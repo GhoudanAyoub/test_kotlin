@@ -1,7 +1,7 @@
 package com.example.test_kotlin.di
 
 import com.example.test_kotlin.api.RetroApi
-import com.example.test_kotlin.utils.constatns.BASE_URL
+import com.example.test_kotlin.utils.constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

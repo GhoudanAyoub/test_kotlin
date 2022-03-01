@@ -1,6 +1,6 @@
 package com.example.test_kotlin.utils
 
-object constatns {
+object constants {
     val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
 }
