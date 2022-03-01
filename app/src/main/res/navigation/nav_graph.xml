@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.test_kotlin.ui.fragments.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_actionFragment"
+            app:destination="@id/actionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/actionFragment"
+        android:name="com.example.test_kotlin.ui.fragments.ActionFragment"
+        android:label="action_fragment"
+        tools:layout="@layout/action_fragment" >
+        <argument
+            android:name="user"
+            app:argType="com.example.test_kotlin.Models.users"
+            app:nullable="true" />
+    </fragment>
+</navigation>

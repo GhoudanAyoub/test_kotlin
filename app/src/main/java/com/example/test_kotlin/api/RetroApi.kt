@@ -13,6 +13,6 @@ interface RetroApi {
 
     @GET("todos")
     suspend fun getActions(
-        @Query("userId") id: Int,
+        @Query("userId") id: Int?,
     ): Response<responseAction>
 }

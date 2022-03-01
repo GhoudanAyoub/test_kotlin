@@ -12,7 +12,7 @@ class retroRepository @Inject constructor( val retroApi:RetroApi) {
         return retroApi.getUsers()
     }
 
-    suspend fun getAction(id:Int):Response<responseAction>{
+    suspend fun getAction(id:Int?):Response<responseAction>{
         return retroApi.getActions(id)
     }
 }
