@@ -13,8 +13,10 @@ import com.example.test_kotlin.ui.adapter.userAdapter
 import com.example.test_kotlin.ui.main.MainViewModel
 import com.example.test_kotlin.utils.DataHandler
 import com.example.test_kotlin.utils.LogData
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainFragment : Fragment(R.layout.main_fragment) {
 
     private lateinit var binding: MainFragmentBinding
@@ -34,7 +36,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
             when (Observer) {
                 is DataHandler.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    usersAdapter.differ.submitList(Observer.data?.Users)
+                    usersAdapter.differ.submitList(Observer.data)
                 }
                 is DataHandler.ERROR -> {
                     binding.progressBar.visibility = View.GONE
@@ -51,8 +53,14 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private fun childClickListener(){
 
         usersAdapter.onUsersClicked {
-            findNavController().navigate(MainFragmentDirections.actionMainFragmentToActionFragment(it.id!!))
+            val bundle = Bundle().apply {
+                putParcelable("id", it)
 
+            }
+            findNavController().navigate(
+                R.id.action_mainFragment_to_actionFragment,
+                bundle
+            )
         }
 
         binding.usersRecycler.apply {

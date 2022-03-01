@@ -40,23 +40,10 @@ class actionAdapter  @Inject constructor()  : RecyclerView.Adapter<actionAdapter
             completed.text = action.completed.toString()
 
         }
-
-        holder.itemView.setOnClickListener {
-            setUsersClickListener?.let {
-                it(action)
-            }
-        }
-
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
-    }
-
-    private var setUsersClickListener : ((action:action)->Unit)? =null
-
-    fun onUsersClicked(listener:(action)->Unit){
-        setUsersClickListener =listener
     }
 
 }

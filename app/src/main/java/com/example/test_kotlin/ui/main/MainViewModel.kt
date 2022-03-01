@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.test_kotlin.Models.response
-import com.example.test_kotlin.Models.responseAction
+import com.example.test_kotlin.Models.action
+import com.example.test_kotlin.Models.users
 import com.example.test_kotlin.di.retroRepository
 import com.example.test_kotlin.utils.DataHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,11 +16,11 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val retroRepository: retroRepository) : ViewModel() {
 
-    private val _usersMutable = MutableLiveData<DataHandler<response>>()
-    val users: LiveData<DataHandler<response>> = _usersMutable
+    private val _usersMutable = MutableLiveData<DataHandler<List<users>>>()
+    val users: LiveData<DataHandler<List<users>>> = _usersMutable
 
-    private val _actionMutable = MutableLiveData<DataHandler<responseAction>>()
-    val actions: LiveData<DataHandler<responseAction>> = _actionMutable
+    private val _actionMutable = MutableLiveData<DataHandler<List<action>>>()
+    val actions: LiveData<DataHandler<List<action>>> = _actionMutable
 
     fun getUsers(){
         _usersMutable.postValue(DataHandler.LOADING())
@@ -30,7 +30,7 @@ class MainViewModel @Inject constructor(private val retroRepository: retroReposi
         }
     }
 
-    private fun handleResponseUsers(response: Response<response>): DataHandler<response> {
+    private fun handleResponseUsers(response: Response<List<users>>): DataHandler<List<users>> {
         if (response.isSuccessful) {
             response.body()?.let { responseAction ->
                 return DataHandler.SUCCESS(responseAction)
@@ -47,7 +47,7 @@ class MainViewModel @Inject constructor(private val retroRepository: retroReposi
         }
     }
 
-    private fun handleResponseActions(response: Response<responseAction>): DataHandler<responseAction> {
+    private fun handleResponseActions(response: Response<List<action>>): DataHandler<List<action>> {
         if (response.isSuccessful) {
             response.body()?.let { responseAction ->
                 return DataHandler.SUCCESS(responseAction) }

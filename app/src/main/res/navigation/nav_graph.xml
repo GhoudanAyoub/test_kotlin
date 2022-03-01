@@ -21,6 +21,6 @@
         tools:layout="@layout/action_fragment" >
         <argument
             android:name="id"
-            app:argType="integer" />
+            app:argType="com.example.test_kotlin.Models.users" />
     </fragment>
 </navigation>
