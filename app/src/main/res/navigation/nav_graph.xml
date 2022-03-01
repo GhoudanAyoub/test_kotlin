@@ -20,8 +20,7 @@
         android:label="action_fragment"
         tools:layout="@layout/action_fragment" >
         <argument
-            android:name="user"
-            app:argType="com.example.test_kotlin.Models.users"
-            app:nullable="true" />
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>

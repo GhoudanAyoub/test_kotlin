@@ -8,10 +8,12 @@ import com.example.test_kotlin.Models.response
 import com.example.test_kotlin.Models.responseAction
 import com.example.test_kotlin.di.retroRepository
 import com.example.test_kotlin.utils.DataHandler
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(private val retroRepository: retroRepository) : ViewModel() {
 
     private val _usersMutable = MutableLiveData<DataHandler<response>>()
