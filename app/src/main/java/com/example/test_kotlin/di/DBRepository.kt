@@ -10,7 +10,7 @@ import com.example.test_kotlin.di.Transformer.convertActionModelToActionEntity
 import com.example.test_kotlin.di.Transformer.convertUserModelToUserEntity
 import javax.inject.Inject
 
-class DBRepository  @Inject constructor(val appDatabase: AppDatabase){
+class DBRepository @Inject constructor(val appDatabase: AppDatabase) {
 
     suspend fun insertUser(users: users): Long {
         return appDatabase.UsersDao()
@@ -34,7 +34,7 @@ class DBRepository  @Inject constructor(val appDatabase: AppDatabase){
         appDatabase.ActionDao().delete(convertActionModelToActionEntity(action))
     }
 
-    fun getAllOfflineAction(userID:Int?): LiveData<actionEntity> {
+    fun getAllOfflineAction(userID: Int?): LiveData<actionEntity> {
         return appDatabase.ActionDao().getAllOfflineAction(userID)
     }
 

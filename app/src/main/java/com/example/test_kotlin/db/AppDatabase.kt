@@ -9,9 +9,9 @@ import com.example.test_kotlin.db.entity.usersEntity
 
 @Database(
     version = 1,
-    entities = [usersEntity::class,actionEntity::class],
+    entities = [usersEntity::class, actionEntity::class],
 )
-abstract class AppDatabase  : RoomDatabase(){
+abstract class AppDatabase : RoomDatabase() {
     abstract fun UsersDao(): UsersDao
     abstract fun ActionDao(): ActionDao
 }

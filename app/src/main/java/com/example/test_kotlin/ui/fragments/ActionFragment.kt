@@ -8,9 +8,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test_kotlin.R
 import com.example.test_kotlin.databinding.ActionFragmentBinding
+import com.example.test_kotlin.ui.ViewModels.MainViewModel
+import com.example.test_kotlin.ui.ViewModels.OfflineViewModel
 import com.example.test_kotlin.ui.adapter.actionAdapter
-import com.example.test_kotlin.ui.main.MainViewModel
-import com.example.test_kotlin.ui.main.OfflineViewModel
 import com.example.test_kotlin.utils.DataHandler
 import com.example.test_kotlin.utils.LogData
 import com.google.android.material.snackbar.Snackbar
@@ -33,15 +33,17 @@ class ActionFragment : Fragment(R.layout.action_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val user = args.id
+        //  var ob: List<action>
         binding = ActionFragmentBinding.bind(view)
         init()
         mainViewModel.getAction(user.id)
+
         mainViewModel.actions.observe(viewLifecycleOwner, { Observer ->
-                when (Observer) {
+            when (Observer) {
                 is DataHandler.SUCCESS -> {
                     binding.progressBarAction.visibility = View.GONE
                     actionAdapter.differ.submitList(Observer.data)
-                    LogData(""+user.id)
+                    //    ob=Observer.data!!
                 }
                 is DataHandler.ERROR -> {
                     binding.progressBarAction.visibility = View.GONE
@@ -58,6 +60,7 @@ class ActionFragment : Fragment(R.layout.action_fragment) {
         binding.fab.setOnClickListener {
             if (user != null) {
                 offlineViewModel.insertUser(user)
+                // offlineViewModel.insertAction(ob)
             }
             Snackbar.make(binding.root, "User Saved ", Snackbar.LENGTH_LONG).show()
         }

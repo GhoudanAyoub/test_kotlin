@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test_kotlin.R
 import com.example.test_kotlin.databinding.FragmentOfflineBinding
+import com.example.test_kotlin.ui.ViewModels.OfflineViewModel
 import com.example.test_kotlin.ui.adapter.userAdapter
-import com.example.test_kotlin.ui.main.OfflineViewModel
 import com.example.test_kotlin.utils.DataHandler
-import androidx.lifecycle.Observer
 import com.example.test_kotlin.utils.LogData
+import com.example.test_kotlin.utils.checkForInternet
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -19,7 +21,7 @@ import javax.inject.Inject
 class OffLineFragment : Fragment(R.layout.fragment_offline) {
 
     lateinit var binding: FragmentOfflineBinding
-    val viewModel: OfflineViewModel by viewModels()
+    val offlineViewModel: OfflineViewModel by viewModels()
 
     @Inject
     lateinit var userAdapter: userAdapter
@@ -28,11 +30,12 @@ class OffLineFragment : Fragment(R.layout.fragment_offline) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentOfflineBinding.bind(view)
         init()
-        viewModel.users.observe(viewLifecycleOwner, Observer { dataHandler ->
+        offlineViewModel.users.observe(viewLifecycleOwner, Observer { dataHandler ->
             when (dataHandler) {
                 is DataHandler.SUCCESS -> {
                     LogData("onViewCreated: SUCCESS ")
                     userAdapter.differ.submitList(dataHandler.data)
+
                 }
                 is DataHandler.ERROR -> {
                     LogData("onViewCreated: ERROR ${dataHandler.message}")
@@ -49,7 +52,11 @@ class OffLineFragment : Fragment(R.layout.fragment_offline) {
             adapter = userAdapter
             layoutManager = LinearLayoutManager(activity)
         }
-
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (checkForInternet(getView()!!.context))
+            findNavController().navigate(R.id.action_offLineFragment_to_mainFragment)
+    }
 }

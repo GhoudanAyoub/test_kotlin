@@ -1,4 +1,4 @@
-package com.example.test_kotlin.ui.main
+package com.example.test_kotlin.ui.ViewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +22,7 @@ class MainViewModel @Inject constructor(private val retroRepository: retroReposi
     private val _actionMutable = MutableLiveData<DataHandler<List<action>>>()
     val actions: LiveData<DataHandler<List<action>>> = _actionMutable
 
-    fun getUsers(){
+    fun getUsers() {
         _usersMutable.postValue(DataHandler.LOADING())
         viewModelScope.launch {
             val response = retroRepository.getUsers()
@@ -39,7 +39,7 @@ class MainViewModel @Inject constructor(private val retroRepository: retroReposi
         return DataHandler.ERROR(message = response.errorBody().toString())
     }
 
-    fun getAction(id:Int?){
+    fun getAction(id: Int?) {
         _actionMutable.postValue(DataHandler.LOADING())
         viewModelScope.launch {
             val response = retroRepository.getAction(id)
@@ -50,7 +50,8 @@ class MainViewModel @Inject constructor(private val retroRepository: retroReposi
     private fun handleResponseActions(response: Response<List<action>>): DataHandler<List<action>> {
         if (response.isSuccessful) {
             response.body()?.let { responseAction ->
-                return DataHandler.SUCCESS(responseAction) }
+                return DataHandler.SUCCESS(responseAction)
+            }
         }
         return DataHandler.ERROR(message = response.errorBody().toString())
     }

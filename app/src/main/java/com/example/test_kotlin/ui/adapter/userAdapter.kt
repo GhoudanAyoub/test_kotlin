@@ -9,7 +9,7 @@ import com.example.test_kotlin.Models.users
 import com.example.test_kotlin.databinding.ChildLayoutBinding
 import javax.inject.Inject
 
-class userAdapter @Inject constructor()  : RecyclerView.Adapter<userAdapter.ViewHolder>() {
+class userAdapter @Inject constructor() : RecyclerView.Adapter<userAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ChildLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -53,10 +53,10 @@ class userAdapter @Inject constructor()  : RecyclerView.Adapter<userAdapter.View
         return differ.currentList.size
     }
 
-    private var setUsersClickListener : ((users: users)->Unit)? =null
+    private var setUsersClickListener: ((users: users) -> Unit)? = null
 
-    fun onUsersClicked(listener:(users)->Unit){
-        setUsersClickListener =listener
+    fun onUsersClicked(listener: (users) -> Unit) {
+        setUsersClickListener = listener
     }
-    
+
 }

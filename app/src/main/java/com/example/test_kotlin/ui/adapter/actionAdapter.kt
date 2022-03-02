@@ -9,7 +9,7 @@ import com.example.test_kotlin.Models.action
 import com.example.test_kotlin.databinding.ActionChildLayoutBinding
 import javax.inject.Inject
 
-class actionAdapter  @Inject constructor()  : RecyclerView.Adapter<actionAdapter.ViewHolder>() {
+class actionAdapter @Inject constructor() : RecyclerView.Adapter<actionAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ActionChildLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -37,7 +37,8 @@ class actionAdapter  @Inject constructor()  : RecyclerView.Adapter<actionAdapter
         val action = differ.currentList[position]
         holder.binding.apply {
             title.text = action.title
-            completed.text = action.completed.toString()
+
+            completed.isChecked = action.completed!!
 
         }
     }

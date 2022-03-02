@@ -10,28 +10,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:weightSum="1"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="1"
             android:gravity="center|start"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
+
+        <CheckBox
             android:id="@+id/completed"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:gravity="center|start"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:backgroundTint="#7C0000"
+            android:buttonTint="#ED0000"
+            android:checked="true"
+            android:clickable="false"
+            android:gravity="center|start" />
     </LinearLayout>
 
     <View

@@ -11,4 +11,4 @@ data class users(
     val email: String?,
     val phone: String?,
     val website: String?
-): Parcelable
+) : Parcelable

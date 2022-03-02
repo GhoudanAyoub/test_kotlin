@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "ACTION")
 data class actionEntity(
     @PrimaryKey var id: Int?,
-    var userId:Int?,
-    var title:String?,
-    var completed:Boolean?)
+    var userId: Int?,
+    var title: String?,
+    var completed: Boolean?
+)

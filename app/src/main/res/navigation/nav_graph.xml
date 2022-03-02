@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_actionFragment"
             app:destination="@id/actionFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_offLineFragment"
+            app:destination="@id/offLineFragment" />
     </fragment>
     <fragment
         android:id="@+id/actionFragment"
@@ -22,5 +25,29 @@
         <argument
             android:name="id"
             app:argType="com.example.test_kotlin.Models.users" />
+    </fragment>
+    <fragment
+        android:id="@+id/offLineFragment"
+        android:name="com.example.test_kotlin.ui.fragments.OffLineFragment"
+        android:label="fragment_offline"
+        tools:layout="@layout/fragment_offline" >
+        <action
+            android:id="@+id/action_offLineFragment_to_actionFragment"
+            app:destination="@id/actionFragment" />
+        <action
+            android:id="@+id/action_offLineFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.test_kotlin.ui.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_offLineFragment"
+            app:destination="@id/offLineFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
 </navigation>
