@@ -33,6 +33,9 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         childClickListener()
 
 
+        if (!checkForInternet(getView()!!.context))
+            findNavController().navigate(R.id.action_mainFragment_to_offLineFragment)
+        else{
         mainViewModel.getUsers()
         mainViewModel.users.observe(viewLifecycleOwner, { Observer ->
             when (Observer) {
@@ -46,13 +49,12 @@ class MainFragment : Fragment(R.layout.main_fragment) {
                 }
                 is DataHandler.LOADING -> {
                     binding.progressBar.visibility = View.VISIBLE
-                    if (!checkForInternet(getView()!!.context))
-                        findNavController().navigate(R.id.action_mainFragment_to_offLineFragment)
                     LogData("onViewCreated: LOADING..")
 
                 }
             }
-        })
+        })}
+
     }
 
     private fun childClickListener() {
