@@ -4,4 +4,5 @@
     <string name="checkConn">Checking Connectivity status</string>
     <string name="Online">Online Mode</string>
     <string name="Offline">Offline Mode</string>
+    <string name="parental_control_title">Parental Control (Demo)</string>
 </resources>
