@@ -81,6 +81,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.1"
     implementation "androidx.navigation:navigation-ui-ktx:2.4.1"
 
+    // WorkManager (disclosed, battery-friendly scheduled wake-ups for the parental-control demo)
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
+
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
